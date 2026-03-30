@@ -36,23 +36,15 @@
       color: var(--white);
       font-family: 'Space Mono', monospace;
       overflow-x: hidden;
-      cursor: none;
+      cursor: default;
     }
 
-    .cursor {
-      width: 14px; height: 14px;
-      background: var(--orange);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: exclusion;
-      transition: width 0.2s, height 0.2s;
+    /* Cursor: default everywhere, pointer on interactables */
+    a, .skill-card, .project-card, .contato-btn, button, [role="button"] {
+      cursor: pointer;
     }
-    .cursor.big { width: 60px; height: 60px; }
 
-    .cursor-trail { display: none; }
+    .btn { cursor: pointer; }
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
@@ -156,7 +148,7 @@
       font-size: 0.9rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
       text-decoration: none; border: none;
-      cursor: none; transition: all 0.2s;
+      transition: all 0.2s;
       display: inline-flex; align-items: center; gap: 0.5rem;
     }
     .btn-primary { background: var(--orange); color: #000; }
@@ -263,12 +255,18 @@
     .ssr-val.orange { color: var(--orange); }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
 
     .skill-card {
       background: var(--surface); padding: 1.5rem;
       position: relative; overflow: hidden;
-      transition: background 0.2s; cursor: none;
+      transition: background 0.2s;
     }
     .skill-card:hover { background: #1a1a1a; }
     .skill-card::before { content: attr(data-icon); position: absolute; right: 0.8rem; top: 0.8rem; font-size: 1.4rem; opacity: 0.12; }
@@ -278,6 +276,19 @@
     .sk-bar { height: 2px; background: var(--border); margin-top: 1rem; }
     .sk-fill { height: 100%; background: linear-gradient(90deg, var(--orange-dark), var(--orange)); }
     .sk-pct { font-size: 0.55rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 0.1em; }
+
+    /* Skills category separator */
+    .skills-section-label {
+      grid-column: 1 / -1;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,107,26,0.04);
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
 
     /* PROJETOS */
     .projects-grid {
@@ -294,7 +305,6 @@
       position: relative;
       overflow: hidden;
       transition: background 0.2s;
-      cursor: none;
     }
 
     .project-card:hover { background: #1a1a1a; }
@@ -450,9 +460,6 @@
 
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="trail"></div>
-
   <nav>
     <a href="#home" class="nav-logo">Geo<em>Forge</em></a>
     <ul class="nav-links">
@@ -557,14 +564,45 @@
       <h2 class="section-title">Arsenal <span>Técnico</span></h2>
     </div>
     <div class="skills-grid reveal">
+
+      <!-- ── FRONT-END ── -->
+      <div class="skills-section-label">// Front-End</div>
       <div class="skill-card" data-icon="🌐"><div class="sk-cat">Front-end</div><div class="sk-name">HTML5</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-pct">90% · Estrutura</div></div>
       <div class="skill-card" data-icon="🎨"><div class="sk-cat">Front-end</div><div class="sk-name">CSS3</div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div><div class="sk-pct">85% · Estilização</div></div>
       <div class="skill-card" data-icon="⚡"><div class="sk-cat">Front-end</div><div class="sk-name">JavaScript</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><div class="sk-pct">80% · Interatividade</div></div>
+      <div class="skill-card" data-icon="🎯"><div class="sk-cat">Front-end</div><div class="sk-name">UX &amp; UI</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Design &amp; Experiência</div></div>
+      <div class="skill-card" data-icon="⚛️"><div class="sk-cat">Front-end</div><div class="sk-name">React</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><div class="sk-pct">70% · SPA</div></div>
+      <div class="skill-card" data-icon="📱"><div class="sk-cat">Front-end</div><div class="sk-name">React Native</div><div class="sk-bar"><div class="sk-fill" style="width:60%"></div></div><div class="sk-pct">60% · Mobile</div></div>
+
+      <!-- ── FRAMEWORKS ── -->
+      <div class="skills-section-label">// Frameworks & Ferramentas</div>
       <div class="skill-card" data-icon="📱"><div class="sk-cat">Framework</div><div class="sk-name">Bootstrap</div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div><div class="sk-pct">88% · Responsivo</div></div>
-      <div class="skill-card" data-icon="🖥️"><div class="sk-cat">Back-end</div><div class="sk-name">PHP</div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div><div class="sk-pct">75% · Servidor</div></div>
+      <div class="skill-card" data-icon="💨"><div class="sk-cat">Framework</div><div class="sk-name">TailwindCSS</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-pct">90% · Utility-first</div></div>
+      <div class="skill-card" data-icon="🏗️"><div class="sk-cat">Arquitetura</div><div class="sk-name">MVC</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Padrão de projeto</div></div>
+      <div class="skill-card" data-icon="🔀"><div class="sk-cat">Versionamento</div><div class="sk-name">Git &amp; GitHub</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Controle de versão</div></div>
+      <div class="skill-card" data-icon="🤖"><div class="sk-cat">IA &amp; Dev Tools</div><div class="sk-name">Claude &amp; Copilot</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Produtividade com IA</div></div>
+      <div class="skill-card" data-icon="📝"><div class="sk-cat">CMS</div><div class="sk-name">WordPress</div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><div class="sk-pct">80% · CMS &amp; Sites</div></div>
+
+      <!-- ── BACK-END ── -->
+      <div class="skills-section-label">// Back-End & Banco de Dados</div>
+      <div class="skill-card" data-icon="🖥️"><div class="sk-cat">Back-end</div><div class="sk-name">PHP</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-pct">90% · Servidor</div></div>
       <div class="skill-card" data-icon="🗄️"><div class="sk-cat">Back-end</div><div class="sk-name">PDO / SQL</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><div class="sk-pct">70% · Banco de dados</div></div>
-      <div class="skill-card" data-icon="🤝"><div class="sk-cat">Soft Skill</div><div class="sk-name">Team Work</div><div class="sk-bar"><div class="sk-fill" style="width:98%"></div></div><div class="sk-pct">98% · Quadra & Escritório</div></div>
-      <div class="skill-card" data-icon="🔀"><div class="sk-cat">Soft Skill</div><div class="sk-name">Adaptação</div><div class="sk-bar"><div class="sk-fill" style="width:95%"></div></div><div class="sk-pct">95% · Qualquer contexto</div></div>
+      <div class="skill-card" data-icon="🐘"><div class="sk-cat">Banco de Dados</div><div class="sk-name">PostgreSQL &amp; MySQL</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · SGBD Relacional</div></div>
+      <div class="skill-card" data-icon="☕"><div class="sk-cat">Back-end</div><div class="sk-name">Java</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><div class="sk-pct">70% · OOP</div></div>
+      <div class="skill-card" data-icon="🔵"><div class="sk-cat">Paradigma</div><div class="sk-name">POO</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Orientação a Objetos</div></div>
+
+      <!-- ── SOFT SKILLS ── -->
+      <div class="skills-section-label">// Soft Skills</div>
+      <div class="skill-card" data-icon="🤝"><div class="sk-cat">Soft Skill</div><div class="sk-name">Team Work</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Quadra &amp; Escritório</div></div>
+      <div class="skill-card" data-icon="🔀"><div class="sk-cat">Soft Skill</div><div class="sk-name">Adaptação</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Qualquer contexto</div></div>
+      <div class="skill-card" data-icon="🧠"><div class="sk-cat">Soft Skill</div><div class="sk-name">Raciocínio Lógico</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Lógica &amp; Resolução</div></div>
+      <div class="skill-card" data-icon="⚡"><div class="sk-cat">Soft Skill</div><div class="sk-name">Agilidade</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Execução rápida</div></div>
+      <div class="skill-card" data-icon="🗂️"><div class="sk-cat">Soft Skill</div><div class="sk-name">Organização</div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><div class="sk-pct">90% · Gestão &amp; Foco</div></div>
+      <div class="skill-card" data-icon="💪"><div class="sk-cat">Soft Skill</div><div class="sk-name">Trabalho sob pressão</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Alta performance</div></div>
+      <div class="skill-card" data-icon="📚"><div class="sk-cat">Soft Skill</div><div class="sk-name">Autoaprendizado</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Constante evolução</div></div>
+      <div class="skill-card" data-icon="🛡️"><div class="sk-cat">Soft Skill</div><div class="sk-name">Resiliência</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Não desiste</div></div>
+      <div class="skill-card" data-icon="💙"><div class="sk-cat">Soft Skill</div><div class="sk-name">Empatia</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><div class="sk-pct">100% · Pessoas em primeiro lugar</div></div>
+
     </div>
   </div>
 
@@ -706,36 +744,6 @@
           </div>
         </div>
       </div>
-      <div class="exp-item reveal">
-        <div class="exp-period-col"><strong>2022</strong>jul → jan 2024<br>1 ano 7 meses<br>No local · SP</div>
-        <div>
-          <span class="exp-badge grey">Tempo Integral</span>
-          <div class="exp-role">Ajudante de Cozinha</div>
-          <div class="exp-company">Bom Beef Burgers</div>
-          <div class="exp-desc"><p>Ambiente de alta demanda e ritmo intenso. Desenvolveu resiliência, adaptação e trabalho em equipe sob pressão — competências que leva para o mundo tech.</p></div>
-          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-period-col"><strong>2021</strong>fev → jul<br>6 meses<br>SP</div>
-        <div>
-          <span class="exp-badge grey">Tempo Integral</span>
-          <div class="exp-role">Auxiliar nos serviços de alimentação</div>
-          <div class="exp-company">Kenko Jusu</div>
-          <div class="exp-desc"><p>Prestação de serviços com foco em organização, atendimento e colaboração em equipe.</p></div>
-          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-period-col"><strong>2019</strong>mai → mar 2020<br>11 meses<br>SP</div>
-        <div>
-          <span class="exp-badge grey">Jovem Aprendiz</span>
-          <div class="exp-role">Jovem Aprendiz</div>
-          <div class="exp-company">Burger King do Brasil · Espro</div>
-          <div class="exp-desc"><p>Programa de aprendizagem profissional em paralelo — Burger King (Shopping Jardim Sul) e Espro (Largo São Francisco) — desenvolvendo as primeiras competências e disciplina de trabalho.</p></div>
-          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -762,26 +770,18 @@
   </footer>
 
   <script>
-    const cursor = document.getElementById('cursor');
-    const trail = document.getElementById('trail');
-    let mx = 0, my = 0, tx = 0, ty = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    });
-    document.querySelectorAll('a, .skill-card, .project-card, .contato-btn').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
-    });
-    (function animTrail() {
-      tx += (mx - tx) * 0.1; ty += (my - ty) * 0.1;
-      trail.style.left = tx + 'px'; trail.style.top = ty + 'px';
-      requestAnimationFrame(animTrail);
-    })();
+    // Scroll reveal
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+    // Active nav link on scroll
     const sections = document.querySelectorAll('[id]');
     const links = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {

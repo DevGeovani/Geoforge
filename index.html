@@ -441,9 +441,79 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     @media (max-width: 900px) {
-      #home { grid-template-columns: 1fr; padding: 8rem 1.5rem 6rem; }
+      /* NAV */
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      /* HERO */
+      #home {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.5rem 0;
+        min-height: auto;
+        padding-bottom: 0;
+      }
+      .hero-left { padding-bottom: 2rem; }
+      .hero-number {
+        font-size: 8rem;
+        left: -0.5rem;
+        top: -2rem;
+        opacity: 0.6;
+      }
+      .hero-tag {
+        font-size: 0.55rem;
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hero-name {
+        font-size: clamp(3rem, 14vw, 5rem);
+      }
+      .hero-pos {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hero-bio {
+        font-size: 0.68rem;
+        max-width: 100%;
+      }
+      .hero-bio br { display: none; }
+      .hero-cta {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .hero-cta .btn {
+        flex: 1 1 auto;
+        min-width: 120px;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+      }
       .hero-right { display: none; }
-      .hero-stats { position: static; }
+
+      /* HERO STATS — grid 2x2 on mobile */
+      .hero-stats {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 2rem;
+      }
+      .hstat {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.2rem;
+      }
+      .hstat:nth-child(2),
+      .hstat:nth-child(4) { border-right: none; }
+      .hstat:nth-child(3),
+      .hstat:nth-child(4) { border-bottom: none; }
+      .hstat-num { font-size: 1.6rem; }
+      .hstat-label { font-size: 0.5rem; }
+
+      /* SECTIONS */
       .section-wrap { padding: 4rem 1.5rem; }
       .sobre-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
@@ -451,9 +521,16 @@
       .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .contato-row { flex-direction: column; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name { font-size: clamp(2.8rem, 16vw, 4rem); }
+      .hero-pos { font-size: 0.72rem; letter-spacing: 0.05em; }
+      .hero-tag { font-size: 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .section-num { font-size: 3.5rem; }
+      .section-title { font-size: clamp(2rem, 8vw, 3rem); }
     }
   </style>
 </head>
@@ -528,7 +605,7 @@
 
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-num">2+</div><div class="hstat-label">Anos em Dev</div></div>
-      <div class="hstat"><div class="hstat-num">6+</div><div class="hstat-label">Tecnologias</div></div>
+      <div class="hstat"><div class="hstat-num">17+</div><div class="hstat-label">Tecnologias</div></div>
       <div class="hstat"><div class="hstat-num">2</div><div class="hstat-label">Estágios Tech</div></div>
       <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-label">Team Player</div></div>
     </div>
@@ -742,6 +819,36 @@
             <span class="tag tech">PHP</span><span class="tag tech">PDO</span><span class="tag tech">JavaScript</span>
             <span class="tag tech">CSS3</span><span class="tag tech">Bootstrap</span><span class="tag tech">HTML5</span><span class="tag">+7 competências</span>
           </div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period-col"><strong>2022</strong>jul → jan 2024<br>1 ano 7 meses<br>No local · SP</div>
+        <div>
+          <span class="exp-badge grey">Tempo Integral</span>
+          <div class="exp-role">Ajudante de Cozinha</div>
+          <div class="exp-company">Bom Beef Burgers</div>
+          <div class="exp-desc"><p>Ambiente de alta demanda e ritmo intenso. Desenvolveu resiliência, adaptação e trabalho em equipe sob pressão — competências que leva para o mundo tech.</p></div>
+          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period-col"><strong>2021</strong>fev → jul<br>6 meses<br>SP</div>
+        <div>
+          <span class="exp-badge grey">Tempo Integral</span>
+          <div class="exp-role">Auxiliar nos serviços de alimentação</div>
+          <div class="exp-company">Kenko Jusu</div>
+          <div class="exp-desc"><p>Prestação de serviços com foco em organização, atendimento e colaboração em equipe.</p></div>
+          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-period-col"><strong>2019</strong>mai → mar 2020<br>11 meses<br>SP</div>
+        <div>
+          <span class="exp-badge grey">Jovem Aprendiz</span>
+          <div class="exp-role">Jovem Aprendiz</div>
+          <div class="exp-company">Burger King do Brasil · Espro</div>
+          <div class="exp-desc"><p>Programa de aprendizagem profissional em paralelo — Burger King (Shopping Jardim Sul) e Espro (Largo São Francisco) — desenvolvendo as primeiras competências e disciplina de trabalho.</p></div>
+          <div class="exp-tags"><span class="tag">Adaptação</span><span class="tag">Trabalho em equipe</span></div>
         </div>
       </div>
     </div>
